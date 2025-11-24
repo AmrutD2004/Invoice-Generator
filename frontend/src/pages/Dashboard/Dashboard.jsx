@@ -21,7 +21,7 @@ const Dashboard = () => {
   const fetchInvoices = async (id) => {
     setLoading(true);
     try {
-      const response = await axios.get(`http://127.0.0.1:8000/api/all-invoices/${id}`);
+      const response = await axios.get(`https://invoice-generator-backend-or19.onrender.com/api/all-invoices/${id}`);
       const data = response.data;
 
       // artificial delay for nice skeleton UX

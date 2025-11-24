@@ -16,7 +16,7 @@ const InvoiceDetail = () => {
   const ref = useRef()
   const fetchInvoice = async () => {
     try {
-      const response = await axios.get(`http://127.0.0.1:8000/api/invoice-detail/${invID}`);
+      const response = await axios.get(`https://invoice-generator-backend-or19.onrender.com/api/invoice-detail/${invID}`);
       setInvoice(response.data);
       console.log(response.data);
     } catch (err) {
