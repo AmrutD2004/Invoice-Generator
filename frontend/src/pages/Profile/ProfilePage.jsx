@@ -21,7 +21,7 @@ const ProfilePage = () => {
 
   const fetchUserData = async (id) => {
     try {
-      const response = await axios.get(`https://invoice-generator-backend-or19.onrender.com/api/user-data/${id}`)
+      const response = await axios.get(`https://invoice-generator-backend-y9h2.onrender.com/api/user-data/${id}`)
       setFormData(response.data)
     } catch (error) {
       console.log(error)
@@ -46,7 +46,7 @@ const ProfilePage = () => {
     setLoading(true)
     e.preventDefault()
     try {
-      const response = await fetch(`https://invoice-generator-backend-or19.onrender.com/api/update-profile/${userID}`, {
+      const response = await fetch(`https://invoice-generator-backend-y9h2.onrender.com/api/update-profile/${userID}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData)

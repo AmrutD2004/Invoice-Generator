@@ -21,7 +21,7 @@ const Allinvoices = () => {
 
   const fetchInvoices = async (id) => {
     setLoading(true)
-    const response = await axios.get(`https://invoice-generator-backend-or19.onrender.com/api/all-invoices/${id}`)
+    const response = await axios.get(`https://invoice-generator-backend-y9h2.onrender.com/api/all-invoices/${id}`)
     const data = response.data
     setAllInvoices(data)
     setInvoices(data)
@@ -39,7 +39,7 @@ const Allinvoices = () => {
   const handleDelete = async (invIndex) => {
     if (window.confirm('Are you really want to delete invoice?')) {
       try {
-        const response = await fetch(`https://invoice-generator-backend-or19.onrender.com/api/delete-invoice/${invIndex}`, {
+        const response = await fetch(`https://invoice-generator-backend-y9h2.onrender.com/api/delete-invoice/${invIndex}`, {
           method: "DELETE",
         })
         if (response.ok) {
@@ -59,7 +59,7 @@ const Allinvoices = () => {
     const invoice = allInvoices.find(item => item.id == invIndex)
     const newStatus = invoice.status === "Paid" ? "Unpaid" : "Paid"
 
-    await axios.put(`https://invoice-generator-backend-or19.onrender.com/api/invoice-status/${invIndex}`, { status: newStatus })
+    await axios.put(`https://invoice-generator-backend-y9h2.onrender.com/api/invoice-status/${invIndex}`, { status: newStatus })
 
     setAllInvoices(prev =>
       prev.map(item =>
