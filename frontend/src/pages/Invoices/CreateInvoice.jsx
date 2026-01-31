@@ -63,7 +63,7 @@ const CreateInvoice = () => {
 
   const fetchUserData = async (id) => {
     try {
-      const response = await axios.get(`https://invoice-generator-backend-y9h2.onrender.com/api/user-data/${id}`)
+      const response = await axios.get(`https://invoicgenerator.pythonanywhere.com/api/user-data/${id}`)
       setUserBusiness(response.data)
 
       setInvoice(prev => ({
@@ -122,7 +122,7 @@ const CreateInvoice = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch('https://invoice-generator-backend-y9h2.onrender.com/api/create-invoice/', {
+    const response = await fetch('https://invoicgenerator.pythonanywhere.com/api/create-invoice/', {
       method: 'POST',
       headers: { "Content-Type": 'application/json' },
       body: JSON.stringify(invoice)
