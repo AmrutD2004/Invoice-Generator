@@ -21,7 +21,7 @@ const Dashboard = () => {
   const fetchInvoices = async (id) => {
     setLoading(true);
     try {
-      const response = await axios.get(`https://invoicgenerator.pythonanywhere.com/api/all-invoices/${id}`);
+      const response = await axios.get(`https://invoice-generator-backend-y9h2.onrender.com/api/all-invoices/${id}`);
       const data = response.data;
 
       // artificial delay for nice skeleton UX

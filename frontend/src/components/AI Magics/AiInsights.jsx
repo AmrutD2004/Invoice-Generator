@@ -22,7 +22,7 @@ const AiInsights = () => {
     });
 
     const fetchInvoices = async (id) => {
-        const response = await axios.get(`https://invoicgenerator.pythonanywhere.com/api/all-invoices/${id}`)
+        const response = await axios.get(`https://invoice-generator-backend-y9h2.onrender.com/api/all-invoices/${id}`)
         const data = response.data
         setInvoiceData(data)
 
