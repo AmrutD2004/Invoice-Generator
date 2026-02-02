@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Eye, EyeOff, Mail, Lock, FileText, User, PhoneCall, MapPin } from "lucide-react";
+import { Eye, EyeOff, Mail, Lock, FileText, User, PhoneCall, MapPin, Loader2 } from "lucide-react";
 import { toast } from 'react-hot-toast'
 import { useNavigate } from "react-router-dom";
 
@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate()
+  const [loading, setLoading] = useState(false)
   const [formData, setFormdata] = useState({
     username: '',
     email: '',
@@ -24,28 +25,31 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    try{
+    setLoading(true)
+    try {
       const response = await fetch("https://invoicgenerator.pythonanywhere.com/api/user-register/", {
-      method: 'POST',
-      headers: {
-        'Content-Type': "application/json"
-      },
-      body: JSON.stringify(formData)
+        method: 'POST',
+        headers: {
+          'Content-Type': "application/json"
+        },
+        body: JSON.stringify(formData)
 
-    })
-    const data = await response.json();
-    if (response.ok) {
-      toast.success(data.message);
-      setTimeout(() => {
-        navigate("/login");
-      }, 2000);
-    } else {
-      toast.error( data.message);
+      })
+      const data = await response.json();
+      if (response.ok) {
+        toast.success(data.message);
+        setTimeout(() => {
+          navigate("/login");
+        }, 2000);
+      } else {
+        toast.error(data.message);
+      }
     }
-    }
-    catch(error){
+    catch (error) {
       toast.error("client error", error)
+      setLoading(false)
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -159,12 +163,20 @@ const Signup = () => {
 
 
           {/* Submit Button */}
-          <button
-            type="submit"
-            className="w-full bg-[#8a0194] hover:bg-[#6b0074] text-white font-semibold py-2 rounded-lg shadow-md hover:shadow-lg transition-all duration-300"
-          >
-            Sign Up
-          </button>
+          {loading ? (
+            <button
+              className="w-full bg-[#6b0074] text-neutral-300 font-semibold py-2 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 flex items-center gap-2 justify-center"
+            ><Loader2 className="animate-spin mt-0.5" size={18}/>
+              Signing up please wait...
+            </button>
+          ) : (
+            <button
+              type="submit"
+              className="w-full bg-[#8a0194] hover:bg-[#6b0074] text-white font-semibold py-2 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer"
+            >
+              Sign Up
+            </button>
+          )}
         </form>
 
         {/* Footer */}

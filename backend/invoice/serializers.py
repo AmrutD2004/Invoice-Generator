@@ -4,8 +4,8 @@ from .models import *
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = "__all__"
-        read_only_fields = ("id", "email")
+        fields = ['id', 'username', 'email', 'password', 'phone', 'businessName', 'address', 'created_at']
+        
 
 class ItemsSerializer(serializers.ModelSerializer):
     class Meta:
